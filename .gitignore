@@ -128,3 +128,6 @@ dist
 
 # server Config
 config
+
+# server Ceritification
+auth
