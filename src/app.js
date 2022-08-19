@@ -8,6 +8,7 @@ import fs from 'fs';
 // import pool from './database/database';
 import serverConfig from './config/serverConfig';
 import authRouter from './routes/auth';
+import noticeRouter from './routes/notice';
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.use('/imgs', express.static(__dirname + '/../upload_imgs'));
  *   description: 인증에 관련된 API입니다.
  */
 app.use('/api/Authenticate', authRouter);
+
+app.use('/api/Notice', noticeRouter);
 
 httpsServer.listen(25493, '0.0.0.0', () => {
   console.log('Database Server Opened!');
