@@ -21,6 +21,7 @@ const options = {
 const httpsServer = https.createServer(options, app);
 const httpServer = http.createServer(app);
 
+app.use(function(req, res, next) { res.header("Access-Control-Allow-Origin", "*");    res.header("Access-Control-Allow-Headers", "X-Requested-With");    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");    next();});
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
