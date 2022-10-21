@@ -49,4 +49,20 @@ router.get('/getRecentPrimaryNotice', async (req, res, next) => {
   }
 });
 
+router.post('/insertNotice', async (req, res, next) => {
+  try{
+    const connection = await pool.getConnection();
+    const body = req.body;
+    const sql = `insert into NOTICE(title, content, uploader, isPrimary, idOpened) values ('${body["title"]}', '${body["content"]}', 
+    ${body["uploader"]}, ${body["isPrimary"]}, ${body["idOpened"]});`
+    if(serverConfig.SQL_DEBUG) console.log(sql);
+    const result = await connection.query(sql);
+    if(serverConfig.RESULT_DEBUG) console.log(result[0]);
+    res.status(201).send();
+  }catch(err){
+    if(serverConfig.ERROR_DEBUG) console.log(err);
+    res.status(500).send();
+  }
+})
+
 module.exports = router;
