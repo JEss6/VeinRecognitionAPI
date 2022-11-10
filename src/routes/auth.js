@@ -89,38 +89,6 @@ router.get('/checkIDDuplication', async (req, res, next) => {
  *                type: string
  *              password:
  *                type: string
- *              phoneNumber:
- *                type: string
- *              birthday:
- *                type: string
- *                format: date-time
- *              email:
- *                type: string
- *              name:
- *                type: string
- *              address:
- *                type: string
- *              profile_img:
- *                type: string
- *              characteristic:
- *                type: string
- *              registerDate:
- *                type: string
- *                format: date-time
- *              gradeName:
- *                type: string
- *              loginMethod:
- *                type: string
- *              genderName:
- *                type: string
- *              doctorName:
- *                type: string
- *              doctorPosition:
- *                type: string
- *              hospitalName:
- *                type: string
- *              userCurious:
- *                type: string
  *        "400":
  *          description: 비밀번호가 맞지 않거나, 사용자가 존재하지 않음
  *        "401":
