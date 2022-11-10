@@ -1,6 +1,6 @@
 import express, { query } from 'express';
 import bodyparser from 'body-parser';
-// import http from 'http';
+import http from 'http';
 import https from 'https';
 import fs from 'fs';
 // import { connect } from 'http2';
@@ -9,6 +9,8 @@ import fs from 'fs';
 import serverConfig from './config/serverConfig';
 import authRouter from './routes/auth';
 import noticeRouter from './routes/notice';
+import prescriptionRouter from './routes/prescription'
+import intravenousRouter from './routes/intravenous'
 
 const app = express();
 
@@ -17,7 +19,9 @@ const options = {
   cert: fs.readFileSync('auth/vein-recognition.crt'),
 };
 const httpsServer = https.createServer(options, app);
+const httpServer = http.createServer(app);
 
+app.use(function(req, res, next) { res.header("Access-Control-Allow-Origin", "*");    res.header("Access-Control-Allow-Headers", "X-Requested-With");    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");    next();});
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
@@ -38,7 +42,10 @@ app.use('/imgs', express.static(__dirname + '/../upload_imgs'));
 app.use('/api/Authenticate', authRouter);
 
 app.use('/api/Notice', noticeRouter);
+app.use('/api/Prescription', prescriptionRouter);
+app.use('/api/Intravenous', intravenousRouter)
+// app.use('/api/Notice', noticeRouter);
 
-httpsServer.listen(25493, '0.0.0.0', () => {
+httpServer.listen(25493, '0.0.0.0', () => {
   console.log('Database Server Opened!');
 });

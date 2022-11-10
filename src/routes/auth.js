@@ -99,10 +99,10 @@ router.post('/login', async (req, res, next) => {
     const connection = await pool.getConnection();
     const body = req.body;
     try {
-      let sql = `select * from USER_INFO ui 
+      let sql = `select ui.user_index, ui.id, ui.password, ui.name, uj.name as jobName, up.name as positionName, ui.entryDate from USER_INFO ui 
       inner join USER_JOB uj on uj.id = ui.job 
       inner join USER_POSITION up on up.id = ui.position
-      where ui.id = "${body['id']}"`; // and ui.password = ${body["password"]}
+      where ui.id = "${body['id']}" and ui.password = "${body["password"]}"`; // 
       if (serverConfig.SQL_DEBUG) console.log(sql);
       let result = await connection.query(sql);
       if (serverConfig.RESULT_DEBUG) console.log(result[0]);

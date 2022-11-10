@@ -28,5 +28,13 @@
     "mysql2-promise": "^0.1.4",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JEss6/VeinRecognitionAPI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JEss6/VeinRecognitionAPI/issues"
+  },
+  "homepage": "https://github.com/JEss6/VeinRecognitionAPI#readme"
 }
